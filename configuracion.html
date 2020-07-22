@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <title>Configuracion</title>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">TimBox</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="configuracion.html">Configuracion <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="algoritmo.html">Algoritmos</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</head>
+<body>
+    <h2>Configuracion</h2>
+    <form id="formularioMOdif" class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom01">Nombre</label>
+            <input type="text" class="form-control" id="nombreConf">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom02">Correo</label>
+            <input type="text" class="form-control" id="correoConf" disabled>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom02">RFC</label>
+            <input type="text" class="form-control" id="rfcConf" disabled>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom02">Direccion</label>
+            <input type="text" class="form-control" id="direccionConf">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom02">Telefono</label>
+            <input type="text" class="form-control" id="telefonoConf">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom02">Website</label>
+            <input type="text" class="form-control" id="websiteConf">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom02">Cambiar Contraseña</label>
+            <input type="text" class="form-control" id="contrasenaConf">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+        <input type="button" value="Submit" 
+     onclick="modif()">Guardar</button>
+      </form>
+      
+     <script>
+       function modif() {
+
+      // PREPARE FORM DATA
+      var formData = {
+          nombre: document.getElementById("nombreConf").defaultValue,
+          direccion: document.getElementById("direccionConf").defaultValue,
+          telefono: document.getElementById("telefonoConf").defaultValue,
+          website: document.getElementById("websiteConf").defaultValue, 
+          contrasena: document.getElementById("contrasenaConf").defaultValue, 
+          rfc : localStorage.getItem("rfc")
+      }
+
+      // DO POST
+      $.ajax({
+          type : "POST",
+          contentType : "application/json",
+          url : "http://localhost:9090/modif/",
+          data : JSON.stringify(formData),
+          dataType : 'json',
+          success : function(result) { 
+              alert("EXITO!!!!");
+          },
+          error : function(e) {
+              alert("Error!")
+              console.log("ERROR: ", e);
+          }
+      })
+      }
+     </script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
